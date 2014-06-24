@@ -1,17 +1,86 @@
-require "securerandom"
+require 'securerandom'
 
-easyHex = %w[0x000d 0x00d0 0x0d00 0xd000 0x000f 0x00f0 0x0f00 0xf000 0xd0d0 0x00dd 0xdd00 0x0d0d 0x0dd0 0xf0f0 0x00ff 0xff00 0x0f0f 0x0ff0 0x000b 0x00b0 0x0b00 0xb000 0xb0b0 0x00bb 0xbb00 0x0b0b 0x0bb0]
-p var = easyHex.sample
-def first_question temp1,temp2,a
-	puts"a=?"
-				
+
+def random_operation
+	random = rand(3)
+	operation = ("&" if random == 0) || ("|" if random == 1) || "^"
+	return operation
+end
+
+def first_type_question
+
+	orig = SecureRandom.hex(2)
+	insert = SecureRandom.hex(2)
+
+	rand_shift = rand(5..9)
+	a = orig|(insert << rand_shift)
 
 end
-p f = SecureRandom.hex(2)
-p f1 = SecureRandom.hex(2)	
-
-p f2 = f + f1
 
 
+def second_type_question
+	orig = SecureRandom.hex(2)
+	insert = SecureRandom.hex(2)
+
+	rand_shift = rand(5..9)
+		a = orig | (insert << rand_shift )
+	shift = rand(6...8)
+		b = orig | (insert << rand_shift )
+	operation = random_operation
+	result = a operation b
+
+end
 
 
+def third_type_question
+	testValue = SecureRandom.hex(4)
+	a = 0;
+	rand = rand(10)
+	
+	if (testValue & (1 << rand))
+		a = 1
+	else 
+		a = 2
+end
+
+def fourth_type_questions
+	i = SecureRandom.hex(2)
+	rand = rand(10) 
+	operation = random_operation
+	
+	left = SecureRandom.hex(2)
+	result = left operation (1 << rand)
+end
+
+def fifth_type_questions
+
+value1 = SecureRandom.hex(4)
+value2 = SecureRandom.hex(4)
+
+rand1 = rand(10)
+rand2 = rand(10)
+result = (value1 << rand1)^(value2 >> rand2)
+end
+
+def sixth_type_questions
+	testValue = SecureRandom.hex(4)
+	a = 0
+	result = 0
+
+	if ((result=testValue&testValue ^ testValue|(1<<4)))
+		a = 1
+	else
+		a = 2
+	end
+
+def seventh_type_questions 
+	value1 = rand(128..512)
+	value2 = rand(128..512)
+
+	shift = rand(2..4)
+	shift2 = rand(2..4)
+
+	result = (value1 << shift)^(value2>>shift2)
+	end
+end
+end
