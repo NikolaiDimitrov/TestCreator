@@ -1,7 +1,1 @@
-Program for bitwise operators.
 
-Creating 12 different questions.
-
-Creating n tests.
-
-Easy and hard questions.
