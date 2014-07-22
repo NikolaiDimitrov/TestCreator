@@ -1,7 +1,13 @@
-ar = []
-ar2 = []
+require 'nokogiri'
+require 'pdfkit'
 
+p=1
+while p<=ARGV[0].to_i
+
+qe = []
+re = []
 for i in 1..10
+
 a = rand(-9..10)
 if (a == 0)
 	a = rand(-9..10)
@@ -14,35 +20,99 @@ c = rand(-9..10)
 if (c == 0)	
 	c = rand(-9..10)
 end
-p "Number #{i}"
-p qe = ["Number #{i} #{a}x^2 + #{b}x + #{c}\n"]
-ar << qe
+p qe[i] =  "#{i}: #{a}x^2 + #{b}x + #{c}"
+#ar << qe
+
 d = b*b - 4*a*c
 
 	if (d < 0)
 		r = 1
 		p "nqma koreni"
 	else 
-		p x1=(-b-Math.sqrt(d))/(2*a)                 
- 		p x2=(-b+Math.sqrt(d))/(2*a)  
+		x1=(-b-Math.sqrt(d))/(2*a)
+ 		x2=(-b+Math.sqrt(d))/(2*a)
 	end
-	if (d < 0) 
-		xe = ["Number #{i} d < 0 => nqma realni koreni\n"]
-		ar2 << xe	
-	else
-		xe = ["Number #{i} X1 = #{x1} X2 = #{x2}\n"]
-		ar2 << xe
+	if (d < 0)	
+	re[i] = "nqma koreni"
+	else	
+	p x1.round(3)
+	p x2.round(3)
+	re[i]  = "#{i}: X1 = #{x1} X2 = #{x2}"
 	end
-File.open("uravneniq.txt","w") do |file|
-	ar.each do |element|
-		file.write(element[0])
-	end
-
+builder = Nokogiri::HTML::Builder.new do |doc|
+	doc.html {
+		doc.body{
+			doc.table(:border=>"5", :align=>"center", :width=>"600") {
+				doc.tr {
+					doc.td(:border=>"0"){doc.text("#{qe[1]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[2]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[3]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[4]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[5]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[6]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[7]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[8]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[9]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[10]}")}
+					doc.tr(:border=>"0"){}
+	
+				}
+}
+}
+			}
 end
-File.open("resheniq.txt","w") do |file|
-	ar2.each do |element|
-		file.write(element[0])
-	end
 
+fileHtml = File.new("uravneniq#{p}.html", "w+")
+	fileHtml.puts builder.to_html
+fileHtml.close()
+builder = Nokogiri::HTML::Builder.new do |doc|
+	doc.html {
+		doc.body{
+			doc.table(:border=>"5", :align=>"center", :width=>"600") {
+				doc.tr {
+					doc.td(:border=>"0"){doc.text("#{qe[1]} #{re[1]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[2]} #{re[2]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[3]} #{re[3]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[4]} #{re[4]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[5]} #{re[5]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[6]} #{re[6]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[7]} #{re[7]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[8]} #{re[8]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[9]} #{re[9]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{qe[10]} #{re[10]}")}
+					doc.tr(:border=>"0"){}
+					
+	
+				}
+}
+}
+			}
 end
+
+fileHtml = File.new("resheniq#{p}.html", "w+")
+	fileHtml.puts builder.to_html
+fileHtml.close()
+`wkhtmltopdf uravneniq#{p}.html uravneniq#{p}.pdf`
+`wkhtmltopdf resheniq#{p}.html resheniq#{p}.pdf`
+end
+
+p+=1
 end
