@@ -1,4 +1,6 @@
-TestCreator
-===========
+First:
+sudo gem install nokogiri
 
-Homework for TP
+Type:
+ruby TestGenerator.rb <number of tests>
+
