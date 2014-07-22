@@ -1,1 +1,4 @@
-
+1.Solve qudratic equations
+2.Solve cubic equations
+3.Generate HTML and PDF files
+4.Make n tests
