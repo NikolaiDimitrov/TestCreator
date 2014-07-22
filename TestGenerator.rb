@@ -6,6 +6,7 @@ while p<=ARGV[0].to_i
 
 qe = []
 re = []
+ce = []
 for i in 1..10
 
 a = rand(-9..10)
@@ -20,7 +21,21 @@ c = rand(-9..10)
 if (c == 0)	
 	c = rand(-9..10)
 end
-p qe[i] =  "#{i}: #{a}x^2 + #{b}x + #{c}"
+h = rand(-9..10)
+if (h == 0)
+	h = rand(-9..10)
+end
+j = rand(-9..10)
+if (j == 0)
+	j = rand(-9..10)
+end
+k = rand(-9..10)
+if (k == 0)	
+	k = rand(-9..10)
+end
+l = rand(-9..10)
+ce[i] =  "#{i}: #{h}x^3 + #{j}x^2 + #{k}x + l = 0"
+p qe[i] =  "#{i}: #{a}x^2 + #{b}x + #{c} = 0"
 #ar << qe
 
 d = b*b - 4*a*c
@@ -64,6 +79,27 @@ builder = Nokogiri::HTML::Builder.new do |doc|
 					doc.tr(:border=>"0"){}
 					doc.td(:border=>"0"){doc.text("#{qe[10]}")}
 					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[1]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[2]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[3]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[4]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[5]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[6]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[7]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[8]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[9]}")}
+					doc.tr(:border=>"0"){}
+					doc.td(:border=>"0"){doc.text("#{ce[10]}")}
+					doc.tr(:border=>"0"){}
+	
 	
 				}
 }
